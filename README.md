@@ -1,5 +1,6 @@
 === Setup ===
 
+<ol>
 step1 :
 go to your codes directory
 
@@ -35,6 +36,13 @@ branch out
 `git checkout -b whateverFeatureYouAreBuilding`
 
 step8 :
+put your codes accordingly to the boilerplate, make sure it works as usual
+
+step9 :
+once working, continue build your feature
+
+<li>
+step10 :
 publish your codes into github
 
 <ul>
@@ -43,23 +51,19 @@ publish your codes into github
   <li>`git commit -m 'my feature - yourName'`</li>
   <li>`git push origin whateverFeatureYouAreBuilding`</li>
 </ul>
+</li>
 
-step9 (IMPORTANT !!!!!!!!!!!) :
+<li> (IMPORTANT !!!!!!!!!!!) :
 MAKE SURE you are in the right branch
 `git branch`
-if it show "whateverFeatureYouAreBuilding" in green color, you on the right trach
-
-step10 :
-put your codes accordingly to the boilerplate, make sure it works as usual
-
-step11 :
-once working, continue build your feature
-
+if it show "whateverFeatureYouAreBuilding" in green color, you on the right track
+</li>
+</ol>
 if you stuck, let dwi know on slack
 
 Remember to build one feature at a time! and good luck :)
 
-=================================================
+=================================================================================
 
 Some git command you can explore:
 
