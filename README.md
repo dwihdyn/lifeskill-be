@@ -1,48 +1,54 @@
 === Setup ===
 
 <ol>
-step1 :
+<li>
 go to your codes directory
+</li>
 
-step2 :
+<li>
 `cd ..`
+</li>
 
-step3 :
+<li>
 `git clone https://github.com/dwihdyn/lifeskill-be.git`
+</li>
 
-step4 :
+<li>
 ignore this step if you create an environment already. else, go to terminal and run
 
 <ul>
   <li>`conda create -n lifeskill-be python=3.7`</li>
   <li>`source activate lifeskill-be`</li>
 </ul>
+</li>
 
-step5 :
+<li>
 move your codes to under 'lifeskill_web' directory
+</li>
 
-step6 :
+<li>
 run below code in terminal
 
 <ul>
   <li>`pip install -r requirements.txt`</li>
   <li>`pip freeze > requirements.txt`</li>
 </ul>
-
-=== working ===
-
-step7 :
-branch out
-`git checkout -b whateverFeatureYouAreBuilding`
-
-step8 :
-put your codes accordingly to the boilerplate, make sure it works as usual
-
-step9 :
-once working, continue build your feature
+</li>
 
 <li>
-step10 :
+branch out
+`git checkout -b whateverFeatureYouAreBuilding`
+</li>
+
+<li>
+put your codes accordingly to the boilerplate, make sure it works as usual
+</li>
+
+<li>
+once working, continue build your feature
+</li>
+
+<li>
 publish your codes into github
 
 <ul>
