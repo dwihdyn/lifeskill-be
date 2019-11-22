@@ -1,4 +1,4 @@
-=== Setup ===
+=== Step-by-step Setup ===
 
 <ol>
 <li>
@@ -41,7 +41,7 @@ branch out
 </li>
 
 <li>
-put your codes accordingly to the boilerplate, make sure it works as usual
+put your codes accordingly to the boilerplate, make sure it works as usual, by running `flask run`
 </li>
 
 <li>
@@ -52,7 +52,6 @@ once working, continue build your feature
 publish your codes into github
 
 <ul>
-  <li>`cd ..`</li>
   <li>`git add .`</li>
   <li>`git commit -m 'my feature - yourName'`</li>
   <li>`git push origin whateverFeatureYouAreBuilding`</li>
@@ -60,12 +59,12 @@ publish your codes into github
 </li>
 
 <li> (IMPORTANT !!!!!!!!!!!) :
-MAKE SURE you are in the right branch
-`git branch`
+MAKE SURE you are in the right branch! Type
+`git branch`. 
 if it show "whateverFeatureYouAreBuilding" in green color, you on the right track
 </li>
 </ol>
-if you stuck, let dwi know on slack
+if you stuck, let <strong>dwi</strong> know on slack
 
 Remember to build one feature at a time! and good luck :)
 
