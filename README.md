@@ -1,4 +1,4 @@
-=== Step-by-step Setup ===
+## Step-by-step Setup
 
 <ol>
 <li>
@@ -58,12 +58,49 @@ publish your codes into github
 </ul>
 </li>
 
+<li>
+Carry on until you've perfected your feature, and ready to be merged to master
+</li>
+
 <li> (IMPORTANT !!!!!!!!!!!) :
 MAKE SURE you are in the right branch! Type
 `git branch`. 
 if it show "whateverFeatureYouAreBuilding" in green color, you on the right track
 </li>
 </ol>
+
+## Done with your feature, ready to be merged to master
+
+<ol>
+
+Go to terminal and run :
+
+<li>
+git checkout master
+</li>
+
+<li>
+git pull origin master  # get all updates from the master that you've missed
+</li>
+
+<li>
+git checkout whateverFeatureYouAreBuilding
+</li>
+
+<li>
+git rebase master   # put all of your features inside your branch on top of your master LOCAL
+</li>
+
+<li>
+git push origin whateverFeatureYouAreBuilding   # upload your branch work + the updated master (to avoid conflict)
+</li>
+
+<li>
+Merge your branch to the master in github.com -> click 'n branches' -> 'New Pull Request'
+</li>
+
+</ol>
+
 if you stuck, let <strong>dwi</strong> know on slack
 
 Remember to build one feature at a time! and good luck :)
