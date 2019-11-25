@@ -3,7 +3,6 @@ import speech_recognition as sr
 import os
 import sys
 import re
-# import smtplpippiib
 import requests
 import subprocess
 from time import strftime
@@ -37,17 +36,8 @@ def sofia_response(audio):
 
 
 def assistant(command):
-    # lifeskills = [ls.]
     student_list = [sn.fullname.lower() for sn in m.Student.select()]
     points = list(range(5, 51))
-    # p = inflect.engine()
-    # word_points = []
-    
-    # for point in points:
-    #     point = p.number_to_words(point)
-    #     word_points.append(point)
-    # print(student_list)
-    # print(word_points)
 
     if 'hello' in command:
         day_time = int(strftime('%H'))
@@ -94,9 +84,7 @@ def assistant(command):
 
                     else:
                         sofia_response("cant hear you")
-                
-# points = list(range({p}, 50))
-# print(points)
+            
 while True:
     assistant(my_command())
 
