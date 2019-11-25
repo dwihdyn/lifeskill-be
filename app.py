@@ -5,14 +5,10 @@ from models.base_model import db
 import peeweedbevolve
 
 
-
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'instagram_web')
 
 app = Flask('LIFESKILL', root_path=web_dir)
-
-
-
 
 
 if os.getenv('FLASK_ENV') == 'production':
