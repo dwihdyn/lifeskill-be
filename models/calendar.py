@@ -7,6 +7,7 @@ class Club(BaseModel):
     description = pw.CharField()
     image = pw.CharField()
     qualify_pts = pw.IntegerField()
+    favourited = pw.BooleanField(default=False)
 
 
 class Activity(BaseModel):
