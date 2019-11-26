@@ -15,6 +15,7 @@ app = Flask('LIFESKILL', root_path=web_dir)
 
 
 
+
 if os.getenv('FLASK_ENV') == 'production':
     app.config.from_object("config.ProductionConfig")
 else:
