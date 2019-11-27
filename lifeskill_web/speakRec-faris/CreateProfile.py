@@ -1,9 +1,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import IdentificationServiceHttpClientHelper
 import sys
 
 
+=======
+>>>>>>> connecting front to back 50% progress
 def create_profile(subscription_key, locale):
     """Creates a profile on the server.
     Arguments:

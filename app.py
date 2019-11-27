@@ -3,7 +3,6 @@ import config
 from flask import Flask
 from models.base_model import db
 
-
 # from lifeskill_api.blueprints.audio.views import takeAudio
 
 web_dir = os.path.join(os.path.dirname(

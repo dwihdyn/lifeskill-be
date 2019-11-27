@@ -21,7 +21,7 @@ profile = "7ed74eae-db79-4966-907f-c48a494994a9"
 # helper = api.IdentificationServiceHttpClientHelper.IdentificationServiceHttpClientHelper(
 #     sub_key)
 
-speaker = apgii.IdentifyFile.identify_file(sub_key, audio_file, True, profile)
+speaker = api.IdentifyFile.identify_file(sub_key, audio_file, True, profile)
 
 
 # This functions takes input from microphone and converts input into a string
