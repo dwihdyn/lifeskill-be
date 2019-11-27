@@ -1,6 +1,10 @@
 from flask import Blueprint, jsonify, request
 from models.student import Student
 
+# persistent login setup for frontend
+from flask_jwt_extended import create_access_token
+
+
 students_api_blueprint = Blueprint('students_api', __name__, template_folder='templates')
 
 
@@ -31,10 +35,25 @@ def signup():
     
     
     if Student.get_or_none(id_number=id_number):
-        return jsonify(False) 
+        resp = {
+            "success": False
+        }
+        return jsonify(resp) 
+        # return jsonify(False)
 
-    new_user.save()
-    return jsonify(True)
+    if not new_user.save():
+        resp = {
+            "success": False
+        }
+        return jsonify(resp)
+
+    access_token = create_access_token(identity=new_user.id_number)
+    resp = {
+        "success": True,
+        "auth_token": access_token
+    }
+
+    return jsonify(resp)
 
 
 
@@ -49,10 +68,22 @@ def login():
     # retrieve all student info
     user_check = Student.get_or_none(id_number=id_number)
     if not user_check:
-        return jsonify(False)
+        response = {
+            "success": False
+        }
+        return jsonify(response)
     
     if not password == user_check.password:
-        return jsonify(False)
+        response = {
+            "success": False
+        }
+        return jsonify(response)
 
-    return jsonify(True)
+    access_token = create_access_token(identity=user_check.id_number)
+    response = {
+        "success": True,
+        "auth_token": access_token
+
+    }
+    return jsonify(response)
 
