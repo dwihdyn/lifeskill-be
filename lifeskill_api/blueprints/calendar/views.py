@@ -19,7 +19,7 @@ def show_clubs():
         "name": club.name,
         "description": club.description,
         "image": club.image,
-        "points": club.points_to_qualify,
+        "points": club.qualify_pts,
         "isFavourite": club.favourited,
     } for club in Club.select()]
 
@@ -42,7 +42,7 @@ def show_activities():
         "name": activity.name,
         "description": activity.description,
         "image": activity.image,
-        "points": activity.points_to_qualify,
+        "points": activity.qualify_pts,
         "isFavourite": activity.favourited,
     } for activity in Activity.select()]
 
