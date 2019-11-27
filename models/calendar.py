@@ -16,6 +16,6 @@ class Activity(BaseModel):
     image = pw.CharField()
     qualify_pts = pw.IntegerField()
     favourited = pw.BooleanField(default=False)
-    event_date = pw.DateField()
+    event_date = pw.DateField(null=True)
 
 
