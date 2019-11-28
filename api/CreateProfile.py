@@ -1,3 +1,7 @@
+import IdentificationServiceHttpClientHelper
+import sys
+
+
 def create_profile(subscription_key, locale):
     """Creates a profile on the server.
     Arguments:
