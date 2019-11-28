@@ -18,7 +18,7 @@ import api.IdentifyFile
 import api.IdentificationResponse
 import api.IdentificationProfile
 import tempfile
-
+import ffmpeg
 
 audio_api_blueprint = Blueprint(
     'audio_api', __name__, template_folder='templates')
@@ -119,11 +119,17 @@ def assistant(command):
 def takeAudio():
 
     print('success')
-
-    audio = request.files['file']
-    temp = tempfile.NamedTemporaryFile()
-    temp.write(audio.read())
+    # res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000')
+    # breakpoint()
+    temp = tempfile.NamedTemporaryFile(suffix='.wav')
+    data = request.files['audio'].read()
+    temp.write(data)
+    temp.seek(0)
     audio_file = temp.name
+    file_path = "/".join(audio_file.split("/")[0:-1])
+    file_name = audio_file.split("/")[-1]
+    subprocess.call(['ffmpeg', '-i', audio_file, '-ar',
+                     '16000', (file_path + '/my_' + file_name)])
 
     # os.write(audio_file, audio)
 
@@ -134,11 +140,13 @@ def takeAudio():
     # audio_file = filename + '/' + audio.read()
     # audio = audio.read()
     speaker = api.IdentifyFile.identify_file(
-        sub_key, audio_file, True, profile)
+        sub_key, file_path + '/my_' + file_name, True, profile)
     # This functions takes input from microphone and converts input into a string
 
     if speaker == profile:
-        assistant(my_command(audio_file))
+        subprocess.call(['ffmpeg', '-i', audio_file, '-ar',
+                         '44000', (file_path + '/my2_' + file_name)])
+        assistant(my_command(file_path + '/my2_' + file_name))
     else:
         sofia_response("I do not listen to you")
 
