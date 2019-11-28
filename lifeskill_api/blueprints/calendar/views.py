@@ -49,6 +49,7 @@ def show_activities():
     return jsonify(activities)
 
 
+
 # add an activity to favourites
 @calendar_api_blueprint.route('/activity/favourite', methods=['POST'])
 def fave_activity():
