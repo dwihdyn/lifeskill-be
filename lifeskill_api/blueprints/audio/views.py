@@ -55,8 +55,8 @@ def voice():
 #         assistant(my_command())
 #     else:
 #         sofia_response("I do not listen to you")
-<<<<<<< HEAD
-=======
+<< << << < HEAD
+== == == =
 
 
 @audio_api_blueprint.route('/upload', methods=['POST'])
@@ -95,4 +95,3 @@ def takeAudio():
         sofia_response("I do not listen to you")
 
     return print('IM THE BEST')
->>>>>>> connection to front-end 100% working
