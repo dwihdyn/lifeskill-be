@@ -149,5 +149,3 @@ def takeAudio():
         assistant(my_command(file_path + '/my2_' + file_name))
     else:
         sofia_response("I do not listen to you")
-
-    return print('IM THE BEST')
