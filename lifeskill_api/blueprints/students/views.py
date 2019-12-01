@@ -4,7 +4,6 @@ from models.student import Student
 # persistent login setup for frontend
 from flask_jwt_extended import create_access_token
 
-
 students_api_blueprint = Blueprint('students_api', __name__, template_folder='templates')
 
 
@@ -82,9 +81,24 @@ def login():
     access_token = create_access_token(identity=user_check.id_number)
     response = {
         "success": True,
-        "auth_token": access_token
+        "authToken": access_token,
+        "id_number": id_number
 
     }
     
     return jsonify(response)
+
+
+
+@students_api_blueprint.route('/users/me', methods=['POST'])
+def show():
+    current_user = request.json['id_number']
+    my_account = Student.get_or_none(id_number=current_user)
+    resp = {
+        "id_number": my_account.id_number,
+        "full_name": my_account.full_name,
+        "accumulated_score": my_account.accumulated_score
+    }
+
+    return jsonify(resp)
 
