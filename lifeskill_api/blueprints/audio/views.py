@@ -1,9 +1,13 @@
 import os
+<<<<<<< HEAD
 import config
+=======
+>>>>>>> connecting front to back 50% progress
 from flask import Blueprint, Flask, flash, request, redirect, url_for, session
 from werkzeug.utils import secure_filename
 from flask_cors import CORS, cross_origin
 import logging
+<<<<<<< HEAD
 from models.base_model import db
 import peeweedbevolve
 import models as m
@@ -19,11 +23,15 @@ import api.IdentificationResponse
 import api.IdentificationProfile
 import tempfile
 import ffmpeg
+=======
+
+>>>>>>> connecting front to back 50% progress
 
 audio_api_blueprint = Blueprint(
     'audio_api', __name__, template_folder='templates')
 
 
+<<<<<<< HEAD
 sub_key = os.environ.get("KEY1")
 profile = os.environ.get("PROFILE_ID")
 
@@ -113,10 +121,14 @@ def assistant(command):
 #         assistant(my_command())
 #     else:
 #         sofia_response("I do not listen to you")
+=======
+ALLOWED_EXTENSIONS = set(['wav'])
+>>>>>>> connecting front to back 50% progress
 
 
 @audio_api_blueprint.route('/upload', methods=['POST'])
 def takeAudio():
+<<<<<<< HEAD
 
     print('success')
     # res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000')
@@ -149,3 +161,7 @@ def takeAudio():
         assistant(my_command(file_path + '/my2_' + file_name))
     else:
         sofia_response("I do not listen to you")
+=======
+    audio = request.files['file']
+    return audio
+>>>>>>> connecting front to back 50% progress
