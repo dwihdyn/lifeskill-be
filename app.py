@@ -38,3 +38,9 @@ def _db_close(exc):
         print(db)
         print(db.close())
     return exc
+
+
+@app.cli.command("assistant")
+def x():
+    from lifeskill_api.blueprints.students.credAward_faris.main import assistant, my_command2
+    assistant(my_command2)
