@@ -69,9 +69,9 @@ def signup():
     return jsonify(resp)
 
 
-@students_api_blueprint.route('/login', methods=['POST', 'GET'])
+@students_api_blueprint.route('/login', methods=['POST'])
 def login():
-    # breakpoint()
+
     id_number = request.json['id_number']
     password = request.json['password']
 
@@ -91,7 +91,8 @@ def login():
                 identity=student_check.id_number)
             response = {
                 "success": True,
-                "auth_token": access_token,
+                "authToken": access_token,
+                "id_number": id_number,
                 "full_name": student_check.full_name
             }
             return jsonify(response)
@@ -106,8 +107,9 @@ def login():
                 identity=teacher_check.id_number)
             response = {
                 "success": True,
-                "auth_token": access_token,
-                "full_name": student_check.full_name
+                "authToken": access_token,
+                "id_number": id_number,
+                "full_name": teacher_check.full_name
 
             }
             return jsonify(response)
@@ -117,7 +119,18 @@ def login():
 def show():
     current_user = request.json['id_number']
     my_account = Student.get_or_none(id_number=current_user)
+    if my_account is None:
+        my_account = Teacher.get_or_none(id_number=current_user)
+        resp = {
+            "isStudent": False,
+            "id_number": my_account.id_number,
+            "full_name": my_account.full_name
+        }
+
+        return jsonify(resp)
+
     resp = {
+        "isStudent": True,
         "id_number": my_account.id_number,
         "full_name": my_account.full_name,
         "creativity_score": my_account.creativity_score,
