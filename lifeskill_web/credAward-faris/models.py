@@ -4,7 +4,7 @@ import peewee as pw
 from playhouse.postgres_ext import PostgresqlExtDatabase
 
 
-db = PostgresqlExtDatabase('next-cred')
+db = PostgresqlExtDatabase('lifeskill_be')
 
 
 class Base(pw.Model):
@@ -19,6 +19,7 @@ class Base(pw.Model):
         database = db
         # Check this one out here http://docs.peewee-orm.com/en/latest/peewee/models.html#table-names
         legacy_table_names = False
+
 
 class Student(Base):
     fullname = pw.CharField(null=False)
