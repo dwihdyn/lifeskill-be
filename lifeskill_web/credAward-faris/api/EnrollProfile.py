@@ -1,4 +1,4 @@
-import IdentificationServiceHttpClientHelper
+import api.IdentificationServiceHttpClientHelper
 import sys
 
 
@@ -10,7 +10,7 @@ def enroll_profile(subscription_key, profile_id, file_path, force_short_audio):
     file_path -- the path of the file to use for enrollment
     force_short_audio -- waive the recommended minimum audio limit needed for enrollment
     """
-    helper = IdentificationServiceHttpClientHelper.IdentificationServiceHttpClientHelper(
+    helper = api.IdentificationServiceHttpClientHelper.IdentificationServiceHttpClientHelper(
         subscription_key)
 
     enrollment_response = helper.enroll_profile(
