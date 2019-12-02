@@ -5,10 +5,6 @@ from models.teacher import Teacher
 # persistent login setup for frontend
 from flask_jwt_extended import create_access_token
 
-<< << << < HEAD
-== == == =
-
->>>>>> > 7ef813808f566f565d3ff075eb91ffdd9f6164c4
 students_api_blueprint = Blueprint(
     'students_api', __name__, template_folder='templates')
 
