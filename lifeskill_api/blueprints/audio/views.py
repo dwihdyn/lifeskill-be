@@ -22,7 +22,6 @@ import api.IdentificationProfile
 import tempfile
 import ffmpeg
 
-
 audio_api_blueprint = Blueprint(
     'audio_api', __name__, template_folder='templates')
 

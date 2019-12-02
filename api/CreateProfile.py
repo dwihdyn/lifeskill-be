@@ -1,4 +1,3 @@
-
 import IdentificationServiceHttpClientHelper
 import sys
 
