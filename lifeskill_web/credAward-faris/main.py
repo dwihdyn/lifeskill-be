@@ -113,7 +113,7 @@ def my_command2():
     # loop back to continue to listen for commands if unrecognizable speech is received
     except sr.UnknownValueError:
         print('....')
-        command = my_command()
+        command = my_command2()
     return command
 
 
@@ -126,10 +126,9 @@ def sofia_response(audio):
 
 
 def assistant(command):
-    student_list = [sn.fullname.lower() for sn in m.Student.select()]
-    points = list(range(5, 51))
+    student_list = [sn.full_name.lower() for sn in m.Student.select()]
+    points = list(range(5, 501))
 
-    
     for s in m.Student.select():
         if s.fullname.lower() in command.lower():
             for p in points:
@@ -173,7 +172,7 @@ r = sr.Recognizer()
 
 
 def after_listen(recognizer, audio):
-    
+
     # try:
     speech = recognizer.recognize_google(audio).lower()
     if 'hello' in speech:
@@ -189,29 +188,19 @@ def after_listen(recognizer, audio):
 
         else:
             sofia_response("you are not authorized")
-   
-
 
     # except sr.UnknownValueError:
     #     print('....')
     #     r.listen_in_background(source, after_listen)
-        
-        
-
-#add 12 points to johns creativity score
 
 
-while True:
-    try:
-        r.listen_in_background(source, after_listen)
-        sleep(9999999)
-
-    except:
-        sleep(9999999)
+# add 12 points to johns creativity score
 
 
-    else:
-        break
+r.listen_in_background(source, after_listen)
+sleep(9999999)
+
+
 # record_save()
 # speaker = api.IdentifyFile.identify_file(
 #     sub_key, filename, True, profile)
