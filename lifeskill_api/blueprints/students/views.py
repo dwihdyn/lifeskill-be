@@ -72,7 +72,7 @@ def signup():
 
 @students_api_blueprint.route('/login', methods=['POST', 'GET'])
 def login():
-    breakpoint()
+    # breakpoint()
     id_number = request.json['id_number']
     password = request.json['password']
 
