@@ -97,6 +97,9 @@ def show():
     resp = {
         "id_number": my_account.id_number,
         "full_name": my_account.full_name,
+        "creativity_score": my_account.creativity_score,
+        "leadership_score": my_account.leadership_score,
+        "respect_score": my_account.respect_score,
         "accumulated_score": my_account.accumulated_score
     }
 

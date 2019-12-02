@@ -21,16 +21,25 @@ from models.calendar import *
 import random
 import names
 
-# seed teacher
+# seeding
 Teacher(id_number=0, full_name="admin", password="111").save()
-Student(id_number=11, full_name="fav student", password="111", accumulated_score=random.randint(1000,5000)).save()
-
-# # Club
-# clubs_name = ['Badminton Club', 'Volleyball Club', 'Tennis Club']
-# clubs_desc = ['desc 1', 'desc 2', 'desc 3']
+Student(id_number=11, full_name="fav student", password="111", 
+creativity_score=random.randint(1000,5000), leadership_score=random.randint(1000,5000),
+respect_score=random.randint(1000,5000)).save()
 
 
 for i in random.sample(range(1,5),3):
-    Teacher(id_number=i, full_name=names.get_full_name(), password=names.get_first_name()).save()
-    Student(id_number=i, full_name=names.get_full_name(), password=names.get_first_name(), accumulated_score=random.randint(1000,5000)).save()
+    # Teacher
+    tch_name = names.get_full_name()
+    first, last = tch_name.split()
+    Teacher(id_number=i, full_name=tch_name, password=last).save()
+
+    # Student
+    std_name = names.get_full_name()
+    first, last = std_name.split()
+    Student(id_number=i, full_name=std_name, password=last, 
+    creativity_score=random.randint(1000,5000), leadership_score=random.randint(1000,5000),
+    respect_score=random.randint(1000,5000)).save()
+    
+    # Clubs
     Club(name=names.get_first_name(), description=names.get_full_name(), image=names.get_last_name(), qualify_pts=random.randint(3000,10000)).save()
