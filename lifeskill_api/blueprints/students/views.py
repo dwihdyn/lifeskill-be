@@ -1,14 +1,32 @@
 from flask import Blueprint, jsonify, request
 from models.student import Student
 from models.teacher import Teacher
+# from lifeskill_api.blueprints.students.credAward_faris.main import my_command, my_command2, sofia_response, assistant, after_listen
+import speech_recognition as sr
+import os
+import sys
+import re
+import requests
+import subprocess
+from time import strftime
+import api.IdentificationServiceHttpClientHelper
+import api.IdentifyFile
+import api.IdentificationResponse
+import api.IdentificationProfile
+from dotenv import load_dotenv
+import ffmpeg
+import pyaudio
+import wave
+from time import sleep
+
 
 # persistent login setup for frontend
 from flask_jwt_extended import create_access_token
 
-<< << << < HEAD
-== == == =
+# << << << < HEAD
+# == == == =
 
->>>>>> > 7ef813808f566f565d3ff075eb91ffdd9f6164c4
+# >>>>>> > 7ef813808f566f565d3ff075eb91ffdd9f6164c4
 students_api_blueprint = Blueprint(
     'students_api', __name__, template_folder='templates')
 
