@@ -1,4 +1,4 @@
-import api.IdentificationServiceHttpClientHelper
+import IdentificationServiceHttpClientHelper
 import sys
 
 

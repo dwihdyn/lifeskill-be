@@ -1,10 +1,13 @@
+import logging
 import http.client
 import urllib.parse
 import json
 import time
 from contextlib import closing
-from api import IdentificationProfile, IdentificationResponse, EnrollmentResponse, ProfileCreationResponse
-import logging
+import api.IdentificationProfile
+import api.IdentificationResponse
+import api.EnrollmentResponse
+import api.ProfileCreationResponse
 
 
 class IdentificationServiceHttpClientHelper:

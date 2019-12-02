@@ -1,4 +1,5 @@
 import datetime
+from playhouse.hybrid import hybrid_property
 
 import peewee as pw
 from playhouse.postgres_ext import PostgresqlExtDatabase
@@ -22,11 +23,16 @@ class Base(pw.Model):
 
 
 class Student(Base):
-    fullname = pw.CharField(null=False)
-    creativity = pw.IntegerField(null=True)
-    leadership = pw.IntegerField(null=True)
-    respect = pw.IntegerField(null=True)
-    accumulative = pw.IntegerField(null=True)
+    id_number = pw.IntegerField(unique=True)
+    full_name = pw.CharField()
+    password = pw.CharField()
+    creativity_score = pw.IntegerField()
+    leadership_score = pw.IntegerField()
+    respect_score = pw.IntegerField()
+
+    @hybrid_property
+    def accumulated_score(self):
+        return self.creativity_score + self.leadership_score + self.respect_score
 
 
 db.connect()

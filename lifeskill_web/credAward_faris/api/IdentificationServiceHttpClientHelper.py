@@ -59,7 +59,6 @@ class IdentificationServiceHttpClientHelper:
 
     def get_profile(self, profile_id):
         """Get a speaker's profile with given profile ID
-
         Arguments:
         subscription_key -- the subscription key string
         profile_id -- the profile ID of the profile to resets
@@ -117,7 +116,6 @@ class IdentificationServiceHttpClientHelper:
 
     def delete_profile(self, profile_id):
         """ Deletes a profile from the server
-
         Arguments:
         profile_id -- the profile ID string of user to delete
         """
@@ -143,7 +141,6 @@ class IdentificationServiceHttpClientHelper:
 
     def reset_enrollments(self, profile_id):
         """Reset enrollments of a given profile from the server
-
         Arguments:
         subscription_key -- the subscription key string
         profile_id -- the profile ID of the profile to reset
@@ -288,6 +285,7 @@ class IdentificationServiceHttpClientHelper:
                     raise Exception('Operation Error: ' +
                                     operation_response[self._OPERATION_MESSAGE_FIELD_NAME])
                 else:
+                    print(operation_response)
                     time.sleep(self._OPERATION_STATUS_UPDATE_DELAY)
         except:
             logging.error('Error polling the operation status.')

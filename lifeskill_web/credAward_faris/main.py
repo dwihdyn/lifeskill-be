@@ -16,6 +16,13 @@ import pyaudio
 import wave
 from time import sleep
 
+
+# import api.IdentificationServiceHttpClientHelper
+# import api.IdentifyFile
+# import api.IdentificationResponse
+# import api.IdentificationProfile
+# from api.IdentifyFile import identify_file
+
 load_dotenv()
 
 
@@ -64,7 +71,7 @@ def record_save():
 
 
 audio_file = filename
-sub_key = '84517f5a452f4a6a8a1a570bab6f40a5'
+sub_key = 'aee065282e114a008db22a19ddc3772e'
 profile = '201f5139-1049-4dc8-9a99-b7ce0b8e2dd6'
 
 # helper = api.IdentificationServiceHttpClientHelper.IdentificationServiceHttpClientHelper(
@@ -130,49 +137,44 @@ def assistant(command):
     points = list(range(5, 501))
 
     for s in m.Student.select():
-        if s.fullname.lower() in command.lower():
+        if s.full_name.lower() in command.lower():
             for p in points:
                 if str(p) in command:
                     if 'creativity' in command:
-                        current_point = s.creativity
+                        current_point = s.creativity_score
                         current_point += p
-                        s.creativity = current_point
-                        s.save()
-                        s.accumulative = s.creativity + s.leadership + s.respect
+                        s.creativity_score = current_point
                         s.save()
                         sofia_response(
-                            f"{p} points have been added to {s.fullname}\\'s creativity score")
+                            f"{p} points have been added to {s.full_name}\\'s creativity score")
 
                     elif 'leadership' in command:
-                        current_point = s.leadership
+                        current_point = s.leadership_score
                         current_point += p
-                        s.leadership = current_point
-                        s.save()
-                        s.accumulative = s.creativity + s.leadership + s.respect
+                        s.leadership_score = current_point
                         s.save()
                         sofia_response(
-                            f"{p} points have been added to {s.fullname}\\'s leadership score")
+                            f"{p} points have been added to {s.full_name}\\'s leadership score")
 
                     elif 'respect' in command:
-                        current_point = s.respect
+                        current_point = s.respect_score
                         current_point += p
-                        s.respect = current_point
-                        s.save()
-                        s.accumulative = s.creativity + s.leadership + s.respect
+                        s.respect_score = current_point
                         s.save()
                         sofia_response(
-                            f"{p} points have been added to {s.fullname}\\'s respect score")
+                            f"{p} points have been added to {s.full_name}\\'s respect score")
 
                     else:
                         sofia_response("cant hear you")
 
+
+assistant(my_command2())
 
 source = sr.Microphone()
 r = sr.Recognizer()
 
 
 def after_listen(recognizer, audio):
-
     # try:
     speech = recognizer.recognize_google(audio).lower()
     if 'hello' in speech:
@@ -189,19 +191,22 @@ def after_listen(recognizer, audio):
         else:
             sofia_response("you are not authorized")
 
-    # except sr.UnknownValueError:
-    #     print('....')
-    #     r.listen_in_background(source, after_listen)
+
+# except sr.UnknownValueError:
+#     print('....')
+#     r.listen_in_background(source, after_listen)
 
 
 # add 12 points to johns creativity score
 
 
-r.listen_in_background(source, after_listen)
-sleep(9999999)
+# r.listen_in_background(source, after_listen)
+# sleep(9999999)
 
-
+#
 # record_save()
+# # breakpoint()
+
 # speaker = api.IdentifyFile.identify_file(
 #     sub_key, filename, True, profile)
 
