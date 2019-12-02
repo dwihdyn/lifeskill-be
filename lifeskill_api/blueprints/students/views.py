@@ -19,7 +19,6 @@ def test():
     return jsonify(resp)
 
 
-
 @students_api_blueprint.route('/signup', methods=['POST'])
 def signup():
     id_number=request.json['id_number']
@@ -29,16 +28,11 @@ def signup():
 
     new_user = Student(id_number=id_number,full_name=full_name ,password=password, accumulated_score=accumulated_score)
     
-    
     if Student.get_or_none(id_number=id_number):
         return jsonify(False) 
 
     new_user.save()
     return jsonify(True)
-
-
-
-
 
 
 @students_api_blueprint.route('/login', methods=['POST'])
