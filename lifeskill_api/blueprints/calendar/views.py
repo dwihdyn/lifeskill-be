@@ -9,7 +9,7 @@ calendar_api_blueprint = Blueprint('calendar_api', __name__, template_folder='te
 
 
 # display all clubs
-@calendar_api_blueprint.route('/club', methods=['GET'])
+@calendar_api_blueprint.route('/clubs', methods=['GET'])
 def show_clubs():
 # get a club
 # construct a dict that represents a club
@@ -34,7 +34,7 @@ def show_clubs():
 
 
 # add a club to favourites
-@calendar_api_blueprint.route('/club/favourite', methods=['POST'])
+@calendar_api_blueprint.route('/clubs/favourite', methods=['POST'])
 def fave_club():
     student_id = request.json['student_id']
     club_id = request.json['category_id']
@@ -49,7 +49,7 @@ def fave_club():
 
 
 # display all activities
-@calendar_api_blueprint.route('/activity', methods=['GET'])
+@calendar_api_blueprint.route('/activities', methods=['GET'])
 def show_activities():
     fav_activity = Student_Activity.select().where(Student_Activity.student_id==2)
     favs = []
@@ -71,7 +71,7 @@ def show_activities():
 
 
 # add an activity to favourites
-@calendar_api_blueprint.route('/activity/favourite', methods=['POST'])
+@calendar_api_blueprint.route('/activities/favourite', methods=['POST'])
 def fave_activity():
     student_id = request.json['student_id']
     activity_id = request.json['category_id']
