@@ -152,18 +152,36 @@ def show():
     
 @students_api_blueprint.route('/scoreboard', methods=['GET'])
 def scoreboard():
-    query = Student.select().order_by(Student.accumulated_score.desc())
+    query = Student.select().order_by(Student.accumulated_score.desc()).limit(5)
     ranking = []
     for i in query:
-        # ranking.append(f'{i.full_name} {i.respect_score}')
         ranking.append({
             "name" :i.full_name,
-            "score":i.accumulated_score,
-            "anotherScore":i.accumulated_score
+            "score":i.accumulated_score
         })
     print(ranking)
     resp = {
         "ranking": ranking
+    }
+
+    return jsonify(resp)
+
+
+
+@students_api_blueprint.route('/scoreboard/all', methods=['GET'])
+def scoreboard_all():
+    query = Student.select()
+    ranking = []
+    for i in query:
+        ranking.append({
+            "name" :i.full_name,
+            "score":i.accumulated_score,
+            "anotherScore":i.dropout_score(query)
+        })
+    # print(ranking)
+    sorted_list = sorted(ranking, key=lambda k: k['anotherScore'], reverse=True)
+    resp = {
+        "ranking": sorted_list
     }
 
     return jsonify(resp)

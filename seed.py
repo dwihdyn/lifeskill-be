@@ -36,8 +36,8 @@ Activity.delete().execute()
 
 
 # seeding
-Teacher(id_number=0, full_name="admin", password="111").save()
-Student(id_number=11, full_name="fav student", password="111", 
+Teacher(id_number=0, full_name="Professor Albus Dumbledore", password="111").save()
+Student(id_number=11, full_name="Hermione Granger", password="111", 
 creativity_score=random.randint(20,110), leadership_score=random.randint(20,110),
 respect_score=random.randint(20,110)).save()
 
