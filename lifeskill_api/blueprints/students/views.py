@@ -185,3 +185,42 @@ def scoreboard_all():
     }
 
     return jsonify(resp)
+
+
+@students_api_blueprint.route('/getall', methods=['GET'])
+def get_all():
+    query = Student.select().order_by(Student.full_name)
+    students = []
+    for i in query:
+        students.append(i.full_name)
+    
+    resp = {
+        "students": students
+    }
+
+    return jsonify(resp)
+
+@students_api_blueprint.route('/givepoints', methods=['POST'])
+def give_points():
+    sel_std = request.json['selStd']
+    give_points = request.json['givePoints']
+    category = request.json['category']
+
+
+    student_check = Student.get_or_none(full_name=sel_std)
+    
+
+    if not student_check:
+        resp = {
+            "success": False
+        }
+
+        return jsonify(resp)
+    
+    
+    setattr(student_check, category , getattr(student_check, category) + int(give_points))
+    student_check.save()
+    resp = {
+        "success": True
+    }
+    return jsonify(resp)
