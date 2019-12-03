@@ -94,8 +94,8 @@ def login():
                 "authToken": access_token,
                 "id": student_check.id,
                 "id_number": id_number,
-                "full_name": student_check.full_name,
-                "isStudent": True
+                "full_name": student_check.full_name
+                
                 
             }
             return jsonify(response)
@@ -113,8 +113,8 @@ def login():
                 "authToken": access_token,
                 "id": teacher_check.id,
                 "id_number": id_number,
-                "full_name": teacher_check.full_name,
-                "isStudent": False
+                "full_name": teacher_check.full_name
+                
                 
 
             }
