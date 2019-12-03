@@ -24,10 +24,10 @@ import names
 
 
 # restart database
-Student.delete().execute()
-Teacher.delete().execute()
 Student_Activity.delete().execute()
 Student_Club.delete().execute()
+Student.delete().execute()
+Teacher.delete().execute()
 Club.delete().execute()
 Activity.delete().execute()
 
@@ -38,8 +38,8 @@ Activity.delete().execute()
 # seeding
 Teacher(id_number=0, full_name="Professor Albus Dumbledore", password="111").save()
 Student(id_number=11, full_name="Hermione Granger", password="111", 
-creativity_score=random.randint(20,110), leadership_score=random.randint(20,110),
-respect_score=random.randint(20,110)).save()
+creativity_score=67, leadership_score=88,
+respect_score=76).save()
 
 
 
