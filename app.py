@@ -2,19 +2,7 @@ import os
 import config
 from flask import Flask
 from models.base_model import db
-import peeweedbevolve
-import models as m
-import speech_recognition as sr
-import os
-import sys
-import re
-import requests
-import subprocess
-from time import strftime
-import api.IdentificationServiceHttpClientHelper
-import api.IdentifyFile
-import api.IdentificationResponse
-import api.IdentificationProfile
+
 
 # from lifeskill_api.blueprints.audio.views import takeAudio
 

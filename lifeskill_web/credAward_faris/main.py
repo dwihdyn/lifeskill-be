@@ -65,8 +65,8 @@ def record_save():
 
 audio_file = filename
 sub_key = 'aee065282e114a008db22a19ddc3772e'
-profile = ['201f5139-1049-4dc8-9a99-b7ce0b8e2dd6',
-           '3839fe26-723e-42d9-93cf-3b0c0f343645']
+profile = '201f5139-1049-4dc8-9a99-b7ce0b8e2dd6'
+
 
 # helper = api.IdentificationServiceHttpClientHelper.IdentificationServiceHttpClientHelper(
 #     sub_key)
@@ -191,14 +191,15 @@ def callback(recognizer, audio):
             # print("asdf")
             sofia_response("hello")
             sofia_response("how can i help?")
-            record_save()
-            speaker = api.IdentifyFile.identify_file(
-                sub_key, filename, True, profile)
-            print(speaker)
-            if speaker in profile:
-                assistant(my_command(filename))
-            else:
-                sofia_response("you are not authorized")
+            assistant(my_command2())
+            # record_save()
+            # speaker = api.IdentifyFile.identify_file(
+            #     sub_key, filename, True, profile)
+            # print(speaker)
+            # if speaker in profile:
+            #     assistant(my_command(filename))
+            # else:
+            #     sofia_response("you are not authorized")
     except sr.UnknownValueError:
         print("re-running")
     except sr.RequestError as e:
@@ -211,9 +212,9 @@ def callback(recognizer, audio):
         # add 12 points to johns creativity score
 
 
-r.listen_in_background(source, callback)
-# while True:
-sleep(999999)
+# r.listen_in_background(source, callback)
+# # while True:
+# sleep(999999)
 
 
 # add 12 points to johns creativity score

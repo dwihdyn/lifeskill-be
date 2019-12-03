@@ -18,6 +18,7 @@ import ffmpeg
 import pyaudio
 import wave
 from time import sleep
+from lifeskill_api.blueprints.audio.views import voice
 
 
 # persistent login setup for frontend
@@ -114,8 +115,8 @@ def login():
                 "id_number": id_number,
                 "full_name": student_check.full_name,
                 "isStudent": True
-                
-                
+
+
             }
             return jsonify(response)
     else:
@@ -125,6 +126,7 @@ def login():
             }
             return jsonify(response)
         else:
+            voice()
             access_token = create_access_token(
                 identity=teacher_check.id_number)
             response = {
@@ -134,10 +136,13 @@ def login():
                 "id_number": id_number,
                 "full_name": teacher_check.full_name,
                 "isStudent": False
-                
-                
+
+
 
             }
+            # voice()
+            # voice()
+
             return jsonify(response)
 
 
@@ -167,15 +172,15 @@ def show():
 
     return jsonify(resp)
 
-    
+
 @students_api_blueprint.route('/scoreboard', methods=['GET'])
 def scoreboard():
     query = Student.select().order_by(Student.accumulated_score.desc()).limit(5)
     ranking = []
     for i in query:
         ranking.append({
-            "name" :i.full_name,
-            "score":i.accumulated_score
+            "name": i.full_name,
+            "score": i.accumulated_score
         })
     print(ranking)
     resp = {
@@ -185,19 +190,19 @@ def scoreboard():
     return jsonify(resp)
 
 
-
 @students_api_blueprint.route('/scoreboard/all', methods=['GET'])
 def scoreboard_all():
     query = Student.select()
     ranking = []
     for i in query:
         ranking.append({
-            "name" :i.full_name,
-            "score":i.accumulated_score,
-            "anotherScore":i.dropout_score(query)
+            "name": i.full_name,
+            "score": i.accumulated_score,
+            "anotherScore": i.dropout_score(query)
         })
     # print(ranking)
-    sorted_list = sorted(ranking, key=lambda k: k['anotherScore'], reverse=True)
+    sorted_list = sorted(
+        ranking, key=lambda k: k['anotherScore'], reverse=True)
     resp = {
         "ranking": sorted_list
     }
@@ -211,12 +216,13 @@ def get_all():
     students = []
     for i in query:
         students.append(i.full_name)
-    
+
     resp = {
         "students": students
     }
 
     return jsonify(resp)
+
 
 @students_api_blueprint.route('/givepoints', methods=['POST'])
 def give_points():
@@ -224,9 +230,7 @@ def give_points():
     give_points = request.json['givePoints']
     category = request.json['category']
 
-
     student_check = Student.get_or_none(full_name=sel_std)
-    
 
     if not student_check:
         resp = {
@@ -234,9 +238,9 @@ def give_points():
         }
 
         return jsonify(resp)
-    
-    
-    setattr(student_check, category , getattr(student_check, category) + int(give_points))
+
+    setattr(student_check, category, getattr(
+        student_check, category) + int(give_points))
     student_check.save()
     resp = {
         "success": True
