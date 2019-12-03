@@ -13,7 +13,7 @@ def identify_file(subscription_key, file_path, force_short_audio, profile_ids):
     helper = api.IdentificationServiceHttpClientHelper.IdentificationServiceHttpClientHelper(
         subscription_key)
     identification_response = helper.identify_file(
-        file_path, [profile_ids],
+        file_path, profile_ids,
         force_short_audio == True)
 
     return identification_response.get_identified_profile_id()
