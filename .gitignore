@@ -1,6 +1,4 @@
 .Python
-env/
-.env
 build/
 develop-eggs/
 dist/
