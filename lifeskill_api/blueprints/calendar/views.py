@@ -15,7 +15,7 @@ def show_clubs():
 # construct a dict that represents a club
 # return all the dicts to a list
 # convert the list into a JSON
-    fav_club = Student_Club.select().where(Student_Club.student_id==2)
+    fav_club = Student_Club.select().where(Student_Club.student_id==1)
     favs = []
     for fav in fav_club:
         favs.append(fav.club_id.id)
