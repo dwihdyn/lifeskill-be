@@ -22,11 +22,12 @@ class Base(pw.Model):
 
 
 class Student(Base):
-    fullname = pw.CharField(null=False)
-    creativity = pw.IntegerField(null=True)
-    leadership = pw.IntegerField(null=True)
-    respect = pw.IntegerField(null=True)
-    accumulative = pw.IntegerField(null=True)
+    id_number = pw.IntegerField(unique=True)
+    full_name = pw.CharField()
+    password = pw.CharField()
+    creativity_score = pw.IntegerField()
+    leadership_score = pw.IntegerField()
+    respect_score = pw.IntegerField()
 
 
 db.connect()
