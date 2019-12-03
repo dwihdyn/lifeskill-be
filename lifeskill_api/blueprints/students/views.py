@@ -146,3 +146,12 @@ def show():
     }
 
     return jsonify(resp)
+
+    
+@students_api_blueprint.route('/scoreboard', methods=['GET'])
+def scoreboard():
+    query = Student.select().order_by(Student.accumulated_score.desc())
+    for i in query:
+        ranking = f'{i.full_name} {i.respect_score}'
+
+    return jsonify(ranking)
