@@ -63,53 +63,6 @@ def record_save():
     wf.close()
 
 
-load_dotenv()
-
-
-chunk = 1024  # Record in chunks of 1024 samples
-sample_format = pyaudio.paInt16  # 16 bits per sample
-channels = 1
-fs = 16000  # Record at 44100 samples per second
-seconds = 6
-filename = "output.wav"
-
-
-def record_save():
-
-    p = pyaudio.PyAudio()  # Create an interface to PortAudio
-
-    print('Recording')
-
-    stream = p.open(format=sample_format,
-                    channels=channels,
-                    rate=fs,
-                    frames_per_buffer=chunk,
-                    input=True)
-
-    frames = []  # Initialize array to store frames
-
-    # Store data in chunks for 3 seconds
-    for i in range(0, int(fs / chunk * seconds)):
-        data = stream.read(chunk)
-        frames.append(data)
-
-    # Stop and close the stream
-    stream.stop_stream()
-    stream.close()
-    # Terminate the PortAudio interface
-    p.terminate()
-
-    print('Finished recording')
-
-    # Save the recorded data as a WAV file
-    wf = wave.open(filename, 'wb')
-    wf.setnchannels(channels)
-    wf.setsampwidth(p.get_sample_size(sample_format))
-    wf.setframerate(fs)
-    wf.writeframes(b''.join(frames))
-    wf.close()
-
-
 audio_file = filename
 sub_key = 'aee065282e114a008db22a19ddc3772e'
 profile = ['201f5139-1049-4dc8-9a99-b7ce0b8e2dd6',
@@ -122,25 +75,6 @@ profile = ['201f5139-1049-4dc8-9a99-b7ce0b8e2dd6',
 
 
 # This functions takes input from microphone and converts input into a strin
-
-
-def my_command(audio_file):
-    r = sr.Recognizer()
-    with sr.AudioFile(audio_file) as source:
-        print('Authorizing...')
-        r.pause_threshold = 1
-        r.adjust_for_ambient_noise(source, duration=1)
-        audio = r.listen(source)
-        print(audio)
-
-    try:
-        command = r.recognize_google(audio).lower()
-        print('You said: ' + command + '\n')
-    # loop back to continue to listen for commands if unrecognizable speech is received
-    except sr.UnknownValueError:
-        print('....')
-        command = my_command(audio_file)
-    return command
 
 
 def my_command(audio_file):

@@ -1,3 +1,5 @@
+
+from lifeskill_web.credAward_faris.main import record_save, my_command, my_command2, sofia_response, assistant, callback
 import os
 import config
 import config
@@ -183,3 +185,7 @@ def takeAudio():
         sofia_response("I do not listen to you")
 
     return print('IM THE BEST')
+
+
+@audio_api_blueprint.route('/voice', methods=['POST'])
+def voice():

@@ -16,7 +16,7 @@ import api.IdentifyFile
 import api.IdentificationResponse
 import api.IdentificationProfile
 
-from lifeskill_api.blueprints.audio.views import takeAudio
+# from lifeskill_api.blueprints.audio.views import takeAudio
 
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'instagram_web')
