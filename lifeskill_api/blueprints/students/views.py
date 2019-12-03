@@ -94,7 +94,8 @@ def login():
                 "authToken": access_token,
                 "id": student_check.id,
                 "id_number": id_number,
-                "full_name": student_check.full_name
+                "full_name": student_check.full_name,
+                "isStudent": True
                 
                 
             }
@@ -113,7 +114,8 @@ def login():
                 "authToken": access_token,
                 "id": teacher_check.id,
                 "id_number": id_number,
-                "full_name": teacher_check.full_name
+                "full_name": teacher_check.full_name,
+                "isStudent": False
                 
                 
 
@@ -151,7 +153,17 @@ def show():
 @students_api_blueprint.route('/scoreboard', methods=['GET'])
 def scoreboard():
     query = Student.select().order_by(Student.accumulated_score.desc())
+    ranking = []
     for i in query:
-        ranking = f'{i.full_name} {i.respect_score}'
+        # ranking.append(f'{i.full_name} {i.respect_score}')
+        ranking.append({
+            "name" :i.full_name,
+            "score":i.accumulated_score,
+            "anotherScore":i.accumulated_score
+        })
+    print(ranking)
+    resp = {
+        "ranking": ranking
+    }
 
-    return jsonify(ranking)
+    return jsonify(resp)
