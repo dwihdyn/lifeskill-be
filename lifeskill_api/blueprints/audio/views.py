@@ -1,17 +1,13 @@
-<<<<<<< HEAD
-
 from lifeskill_web.credAward_faris.main import record_save, my_command, my_command2, sofia_response, assistant, callback
 import os
 import config
 import config
-=======
 import os
->>>>>>> connecting front to back 50% progress
+import config
 from flask import Blueprint, Flask, flash, request, redirect, url_for, session
 from werkzeug.utils import secure_filename
 from flask_cors import CORS, cross_origin
 import logging
-<<<<<<< HEAD
 from models.base_model import db
 import peeweedbevolve
 import models as m
@@ -21,15 +17,17 @@ import re
 import requests
 import subprocess
 from time import strftime, sleep
-=======
->>>>>>> connecting front to back 50% progress
+import api.IdentificationServiceHttpClientHelper
+import api.IdentifyFile
+import api.IdentificationResponse
+import api.IdentificationProfile
+import tempfile
 
 
 audio_api_blueprint = Blueprint(
     'audio_api', __name__, template_folder='templates')
 
 
-<<<<<<< HEAD
 source = sr.Microphone()
 r = sr.Recognizer()
 
@@ -46,12 +44,14 @@ def voice():
 
 # while True:
     # sleep(999999)
-=======
-ALLOWED_EXTENSIONS = set(['wav'])
 
 
-@audio_api_blueprint.route('/upload', methods=['POST'])
-def takeAudio():
-    audio = request.files['file']
-    return audio
->>>>>>> connecting front to back 50% progress
+# def start():
+#     speaker = api.IdentifyFile.identify_file(
+#         sub_key, audio, True, profile)
+#     # This functions takes input from microphone and converts input into a string
+
+#     if speaker == profile:
+#         assistant(my_command())
+#     else:
+#         sofia_response("I do not listen to you")
