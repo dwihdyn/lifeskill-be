@@ -94,7 +94,10 @@ def login():
                 "authToken": access_token,
                 "id": student_check.id,
                 "id_number": id_number,
-                "full_name": student_check.full_name
+                "full_name": student_check.full_name,
+                "isStudent": True
+                
+                
             }
             return jsonify(response)
     else:
@@ -111,7 +114,10 @@ def login():
                 "authToken": access_token,
                 "id": teacher_check.id,
                 "id_number": id_number,
-                "full_name": teacher_check.full_name
+                "full_name": teacher_check.full_name,
+                "isStudent": False
+                
+                
 
             }
             return jsonify(response)
@@ -141,4 +147,80 @@ def show():
         "accumulated_score": my_account.accumulated_score
     }
 
+    return jsonify(resp)
+
+    
+@students_api_blueprint.route('/scoreboard', methods=['GET'])
+def scoreboard():
+    query = Student.select().order_by(Student.accumulated_score.desc()).limit(5)
+    ranking = []
+    for i in query:
+        ranking.append({
+            "name" :i.full_name,
+            "score":i.accumulated_score
+        })
+    print(ranking)
+    resp = {
+        "ranking": ranking
+    }
+
+    return jsonify(resp)
+
+
+
+@students_api_blueprint.route('/scoreboard/all', methods=['GET'])
+def scoreboard_all():
+    query = Student.select()
+    ranking = []
+    for i in query:
+        ranking.append({
+            "name" :i.full_name,
+            "score":i.accumulated_score,
+            "anotherScore":i.dropout_score(query)
+        })
+    # print(ranking)
+    sorted_list = sorted(ranking, key=lambda k: k['anotherScore'], reverse=True)
+    resp = {
+        "ranking": sorted_list
+    }
+
+    return jsonify(resp)
+
+
+@students_api_blueprint.route('/getall', methods=['GET'])
+def get_all():
+    query = Student.select().order_by(Student.full_name)
+    students = []
+    for i in query:
+        students.append(i.full_name)
+    
+    resp = {
+        "students": students
+    }
+
+    return jsonify(resp)
+
+@students_api_blueprint.route('/givepoints', methods=['POST'])
+def give_points():
+    sel_std = request.json['selStd']
+    give_points = request.json['givePoints']
+    category = request.json['category']
+
+
+    student_check = Student.get_or_none(full_name=sel_std)
+    
+
+    if not student_check:
+        resp = {
+            "success": False
+        }
+
+        return jsonify(resp)
+    
+    
+    setattr(student_check, category , getattr(student_check, category) + int(give_points))
+    student_check.save()
+    resp = {
+        "success": True
+    }
     return jsonify(resp)
