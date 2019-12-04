@@ -89,6 +89,9 @@ def signup():
 
 
 @students_api_blueprint.route('/login', methods=['POST'])
+# def if_teacher():
+# while True:
+#         voice()
 def login():
 
     id_number = request.json['id_number']
@@ -126,6 +129,7 @@ def login():
             }
             return jsonify(response)
         else:
+
             voice()
             access_token = create_access_token(
                 identity=teacher_check.id_number)

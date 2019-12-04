@@ -29,6 +29,8 @@ r = sr.Recognizer()
 # @audio_api_blueprint.route('/voice', methods=['POST'])
 def voice():
 
+    sofia_response("ready")
+
     r.listen_in_background(source, callback)
 
     # assistant(my_command2())

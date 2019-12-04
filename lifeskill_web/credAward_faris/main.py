@@ -15,6 +15,7 @@ import api.IdentifyFile
 import api.IdentificationResponse
 import api.IdentificationProfile
 from dotenv import load_dotenv
+import re
 
 load_dotenv()
 
@@ -65,8 +66,8 @@ def record_save():
 
 audio_file = filename
 sub_key = 'aee065282e114a008db22a19ddc3772e'
-profile = '201f5139-1049-4dc8-9a99-b7ce0b8e2dd6'
-
+profile = ['201f5139-1049-4dc8-9a99-b7ce0b8e2dd6',
+           '3839fe26-723e-42d9-93cf-3b0c0f343645']
 
 # helper = api.IdentificationServiceHttpClientHelper.IdentificationServiceHttpClientHelper(
 #     sub_key)
@@ -127,23 +128,14 @@ def sofia_response(audio):
 
 
 def assistant(command):
-
-    student_list = [sn.full_name.lower() for sn in m.Student.select()]
-    points = list(range(5, 501))
-    if 'hello' in command:
-        day_time = int(strftime('%H'))
-        if day_time < 12:
-            sofia_response('Hello Faris. Good morning')
-        elif 12 <= day_time < 18:
-            sofia_response('Hello Faris. Good afternoon')
-        else:
-            sofia_response('Hello Faris. Good evening')
-
+    print("running")
     for s in m.Student.select():
-        if s.full_name.lower() in command.lower():
-            # for p in points:
-            #     if str(p) in command:
+        # breakpoint()
+        if s.full_name.lower().partition(' ')[0] in command.lower():
+            # breakpoint
+            print("running")
             p = (re.findall('\d+', command))
+            print(p)
             if int(p[0]) <= 50:
                 if 'creativity' in command:
                     current_point = s.creativity_score
@@ -168,13 +160,15 @@ def assistant(command):
                     s.save()
                     sofia_response(
                         f"{p} points have been added to {s.full_name}\\'s respect score")
-
+                # breakpoint()
                 else:
                     sofia_response("cant hear you")
 
 
-test = "100 points to alex creativity score"
+test = "10 points to Iva Hough creativity score"
 # print(re.findall('\d+', test))
+# breakpoint()
+
 # assistant(test)
 
 
@@ -187,7 +181,7 @@ def callback(recognizer, audio):
 
     try:
         speech = recognizer.recognize_google(audio).lower()
-        if 'audrey' in speech:
+        if 'hello' in speech:
             # print("asdf")
             sofia_response("hello")
             sofia_response("how can i help?")
@@ -205,21 +199,22 @@ def callback(recognizer, audio):
     except sr.RequestError as e:
         print(
             "Could not request results from Google Speech Recognition service; {0}".format(e))
-        # except sr.UnknownValueError:
-        #     print('....')
-        #     r.listen_in_background(source, after_listen)
-
-        # add 12 points to johns creativity score
 
 
 # r.listen_in_background(source, callback)
-# # while True:
-# sleep(999999)
+# sleep(9999999)
 
+# except sr.UnknownValueError:
+#     print('....')
+#     r.listen_in_background(source, after_listen)
 
 # add 12 points to johns creativity score
 
 
+# add 12 points to johns creativity score
+
+# r.listen_in_background(source, callback)
+# sleep(9999999)
 # def go():
 #     while True:
 #         try:
