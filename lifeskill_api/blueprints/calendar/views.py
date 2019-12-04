@@ -10,13 +10,13 @@ calendar_api_blueprint = Blueprint(
 
 
 # display all clubs
-@calendar_api_blueprint.route('/clubs', methods=['GET'])
-def show_clubs():
-    # get a club
-    # construct a dict that represents a club
-    # return all the dicts to a list
-    # convert the list into a JSON
-    fav_club = Student_Club.select().where(Student_Club.student_id == 1)
+@calendar_api_blueprint.route('/clubs/<id>', methods=['GET'])
+def show_clubs(id):
+# get a club
+# construct a dict that represents a club
+# return all the dicts to a list
+# convert the list into a JSON
+    fav_club = Student_Club.select().where(Student_Club.student_id==id)
     favs = []
     for fav in fav_club:
         favs.append(fav.club_id.id)
@@ -51,9 +51,9 @@ def fave_club():
 
 
 # display all activities
-@calendar_api_blueprint.route('/activities', methods=['GET'])
-def show_activities():
-    fav_activity = Student_Activity.select().where(Student_Activity.student_id == 2)
+@calendar_api_blueprint.route('/activities/<id>', methods=['GET'])
+def show_activities(id):
+    fav_activity = Student_Activity.select().where(Student_Activity.student_id==id)
     favs = []
     for fav in fav_activity:
         favs.append(fav.activity_id.id)
