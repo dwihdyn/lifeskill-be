@@ -21,7 +21,7 @@ peewee==3.11.2
 peewee-db-evolve==3.7.3
 psycopg2-binary==2.8.4
 PyAudio==0.2.11
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.4.4
 pyowm==2.10.0
 python-dotenv==0.10.3
